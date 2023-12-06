@@ -1,0 +1,77 @@
+﻿Usuarios:
+* Campos: id, nombre, correo electrónico, contraseña.
+* Documento de ejemplo:
+
+
+
+{
+  "_id": ObjectId("5f85c7b0a61f063a4c2c44a1"),
+  "nombre": "Usuario Ejemplo",
+  "correo": "usuario@example.com",
+  "contraseña": "contraseña 123"
+},
+
+Comandos CRUD:
+# Crear usuario
+db.usuarios.insertOne({
+  "nombre": "Nuevo Usuario",
+  "correo": "nuevo_usuario@example.com",
+  "contraseña": "nueva_contraseña"
+})
+
+
+# Leer usuario
+db.usuarios.findOne({ "nombre": "Usuario Ejemplo" })
+
+
+# Actualizar usuario
+db.usuarios.updateOne(
+  { "nombre": "Usuario Ejemplo" },
+  { $set: { "contraseña": "nueva_contraseña" } }
+)
+
+
+# Eliminar usuario
+db.usuarios.deleteOne({ "nombre": "Usuario Ejemplo" })
+
+
+Tareas:
+* Campos: id, usuario_id, nombre, descripcion, fecha_creacion, fecha_vencimiento, completada.
+* Documento de ejemplo:
+
+{
+  "_id": ObjectId("5f85c7b0a61f063a4c2c44a2"),
+  "usuario_id": ObjectId("5f85c7b0a61f063a4c2c44a1"),
+  "nombre": "Tarea Ejemplo",
+  "descripcion": "Descripción de la tarea",
+  "fecha_creacion": ISODate("2022-01-01T12:00:00Z"),
+  "fecha_vencimiento": ISODate("2022-01-15T12:00:00Z"),
+  "completada": false
+}
+
+Comandos CRUD:
+
+# Crear tarea
+db.tareas.insertOne({
+  "usuario_id": ObjectId("5f85c7b0a61f063a4c2c44a1"),
+  "nombre": "Nueva Tarea",
+  "descripcion": "Descripción de la nueva tarea",
+  "fecha_creacion": ISODate("2023-01-01T12:00:00Z"),
+  "fecha_vencimiento": ISODate("2023-01-15T12:00:00Z"),
+  "completada": false
+})
+
+
+# Leer tarea
+db.tareas.findOne({ "nombre": "Tarea Ejemplo" })
+
+
+# Actualizar tarea
+db.tareas.updateOne(
+  { "nombre": "Tarea Ejemplo" },
+  { $set: { "completada": true } }
+)
+
+
+# Eliminar tarea
+db.tareas.deleteOne({ "nombre": "Tarea Ejemplo" })
